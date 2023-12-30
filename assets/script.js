@@ -62,7 +62,12 @@ function changeSlide(direction) {
     slidesDots[index].classList.remove("dot_selected");
 
     // Assure que le carrousel est infini //
-    index = (index + direction + slides.length) % slides.length;
+    index += direction;
+    if (index < 0) {
+        index = slides.length - 1;
+    } else if (index >= slides.length) {
+        index = 0;
+    }
 
     img.src = "./assets/images/slideshow/" + slides[index].image;
     tagLine.innerHTML = slides[index].tagLine;
